@@ -13,6 +13,7 @@ import java.util.List;
 public interface JobGroupMapper {
 
     List<JobGroup> findAll();
+    List<JobGroup> findAllWithId(@Param("userId") Integer user);
 
     List<JobGroup> find(@Param("appName") String appName,
                         @Param("title") String title,

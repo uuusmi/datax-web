@@ -14,6 +14,7 @@ import io.swagger.annotations.ApiParam;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 import java.util.*;
 
 /**
@@ -22,7 +23,7 @@ import java.util.*;
 @RestController
 @RequestMapping("/api/jobGroup")
 @Api(tags = "执行器管理接口")
-public class JobGroupController {
+public class JobGroupController extends BaseController{
 
     @Resource
     public JobInfoMapper jobInfoMapper;
@@ -31,10 +32,12 @@ public class JobGroupController {
     @Resource
     private JobRegistryMapper jobRegistryMapper;
 
+
     @GetMapping("/list")
     @ApiOperation("执行器列表")
-    public ReturnT<List<JobGroup>> getExecutorList() {
-        return new ReturnT<>(jobGroupMapper.findAll());
+    public ReturnT<List<JobGroup>> getExecutorList(HttpServletRequest request) {
+
+        return new ReturnT<>(jobGroupMapper.findAllWithId(getCurrentUserId(request)));
     }
 
     @PostMapping("/save")

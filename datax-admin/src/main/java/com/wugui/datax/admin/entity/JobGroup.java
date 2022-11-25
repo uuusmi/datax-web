@@ -24,6 +24,9 @@ public class JobGroup {
     @ApiModelProperty("执行器地址列表，多地址逗号分隔(手动录入)")
     private String addressList;
 
+    @ApiModelProperty("用户id")
+    private int userId;
+
     // registry list
     private List<String> registryList;  // 执行器地址列表(系统注册)
     public List<String> getRegistryList() {
@@ -81,4 +84,11 @@ public class JobGroup {
         this.addressList = addressList;
     }
 
+    public int getUserId() {
+        return userId;
+    }
+
+    public void setUserId(int user_id) {
+        this.userId = user_id;
+    }
 }
